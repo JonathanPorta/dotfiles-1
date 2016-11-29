@@ -1,3 +1,5 @@
+alias gr="go run"
+
 if type go >/dev/null 2>&1; then
   unset GOBIN  # ensure $GOBIN is not set on onebox
   unset GOROOT
