@@ -1,0 +1,8 @@
+alias k="knife"
+alias kcu="knife cookbook upload"
+alias kdb="knife data bag"
+alias kru="knife role  from file"
+alias kdb="knife data bag"
+alias kdbu="knife data bag from file"
+alias keu="knife environment from file"
+alias ke="knife environment"

@@ -31,3 +31,10 @@ case "$(uname)" in
         alias la='ls -a --color=auto'
         alias joe_dstat='dstat -lpcgyrdnm'
 esac
+
+
+if [ -f /usr/local/bin/brew ] ; then
+  alias ctags="`brew --prefix`/bin/ctags"
+fi
+
+alias s="sudo"
