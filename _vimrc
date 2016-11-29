@@ -217,7 +217,6 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 autocmd StdinReadPre * let s:std_in=1
 
-nmap <C-m> :TagbarToggle<CR>
 
 "faith-go
 let g:go_auto_type_info = 1
@@ -225,6 +224,7 @@ let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_bin_path = expand("~/go/bin")
@@ -436,6 +436,7 @@ au FocusGained,BufEnter * :silent! !
 
 " NERDTree settings
 "nmap <C-n> :NERDTreeToggle<CR>
+nmap <F1> :NERDTreeToggle<CR>
 nmap <C-n> :NERDTreeTabsToggle<CR>
 let g:NERDTreeShowHidden=1
 let g:NERDTreeWinSize= 22 " smaller than default 31
@@ -444,6 +445,19 @@ let g:NERDTreeWinSize= 22 " smaller than default 31
 let g:nerdtree_tabs_open_on_console_startup = 2
 let g:nerdtree_tabs_focus_on_files = 1
 let g:nerdtree_tabs_focus_on_files = 1
+
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+" map tagbar
+noremap <F8> :TagbarToggle<CR>
+nmap <C-m> :TagbarToggle<CR>
+
+" AutoFormat on write
+noremap <F3> :Autoformat<CR><CR>
+
+" Coffe indent
+let coffee_indent_keep_current = 1
+autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
 " crazy shit needed for 24-bit truecolor mode inside tmux 2.3+
 " https://github.com/lifepillar/vim-solarized8/issues/1#issuecomment-226959344
