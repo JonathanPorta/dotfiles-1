@@ -27,7 +27,6 @@
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   l  = log --oneline --decorate
-#  up = "!git remote update -p; git merge --ff-only @{u}"
   co = checkout
   ci = commit
   s = status
