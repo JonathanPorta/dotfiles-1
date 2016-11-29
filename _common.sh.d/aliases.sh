@@ -38,4 +38,3 @@ if [ -f /usr/local/bin/brew ] ; then
 fi
 
 alias s="sudo"
-alias vi="vim"
