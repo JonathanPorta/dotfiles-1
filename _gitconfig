@@ -1,32 +1,70 @@
 [user]
-    name = joe miller
-    email = joeym@joeym.net
+	name = Jesse Nelson
+	email = spheromak@gmail.com
+  signingkey = E050D2230C454B05E6733D1DEB5FCBBBB279750C
+
 [color]
-    # Use colors in Git commands that are capable of colored output when outputting to the terminal
-    ui = auto
-[color "branch"]
-    current = red reverse
-    local = red
-    remote = green
-[color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
-[github]
-    user = joemiller
+	diff = auto
+	status = auto
+  branch = auto
+
+[core]
+  excludesfile = /Users/jnelson/.gitignore_global
+
+[bitbucket]
+  user = yodabjorn
+
+[help]
+  autocorrect = 1
+
+[rerere]
+  enabled = 1
+
+[push]
+  default = matching
+
 [alias]
-    ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	up = "!git remote update -p; git merge --ff-only @{u}"
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  l  = log --oneline --decorate
+#  up = "!git remote update -p; git merge --ff-only @{u}"
   co = checkout
   ci = commit
   s = status
   ss = status -sb
   p = push
-[push]
-	default = matching
-[gpg]
-	program = gpg2
-[commit]
-	gpgSign = true
+  clean-branches = !sh -c 'git branch --merged master | grep -v master | xargs -n 1 git branch -d'
+#  clean-remote-branches = !sh -c 'git checkout master && git remote update --prune | git branch -r --merged | grep -v master | sed -e 's/origin\//:/' | xargs git push origin'
+[branch]
+	autosetuprebase = always
+
 #[url "git@github.com:"]
+#  insteadOf = https://github.com
+#[url "ssh://git@github.com/"]
 #	insteadOf = https://github.com/
+
+[push]
+  default = tracking
+	default = tracking
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[credential]
+	helper = osxkeychain
+[github]
+	user = spheromak
