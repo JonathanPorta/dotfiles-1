@@ -1,7 +1,7 @@
 [user]
 	name = Jesse Nelson
 	email = spheromak@gmail.com
-    signingkey = E050D2230C454B05E6733D1DEB5FCBBBB279750C
+#    signingkey = E050D2230C454B05E6733D1DEB5FCBBBB279750C
 
 [color]
 	diff = auto
@@ -45,7 +45,6 @@
 
 [push]
   default = tracking
-	default = tracking
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -64,7 +63,7 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
-[credential]
-	helper = osxkeychain
+#[credential]
+#	helper = osxkeychain
 [github]
 	user = spheromak
