@@ -463,3 +463,5 @@ autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 " https://github.com/lifepillar/vim-solarized8/issues/1#issuecomment-226959344
 set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
 set t_8b=[48;2;%lu;%lu;%lum  " Ditto
+
+set spell
