@@ -1,7 +1,6 @@
 [user]
 	name = Jesse Nelson
 	email = spheromak@gmail.com
-    #signingkey = EB5FCBBBB279750C
     signingkey = E050D2230C454B05E6733D1DEB5FCBBBB279750C
 
 [color]
