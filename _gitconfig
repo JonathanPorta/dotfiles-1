@@ -68,3 +68,7 @@
 	helper = osxkeychain
 [github]
 	user = spheromak
+[gpg]
+	program = gpg2
+[commit]
+	gpgSign = true
