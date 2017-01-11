@@ -6,6 +6,7 @@
 #     export EDITOR=vim
 # fi
 export EDITOR=vim
+alias vi=vim
 
 setup_vim() {
   if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ] ; then

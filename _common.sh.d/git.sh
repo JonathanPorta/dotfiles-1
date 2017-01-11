@@ -12,6 +12,7 @@ alias gcp="git cherry-pick"
 alias gb='git branch'
 alias ga='git add'
 alias gca='git commit -CHEAD --amend'
+alias gfl='git push --force-with-lease'
 alias gd='git diff --color-words'
 alias gdc='git diff --cached -w'
 alias gdw='git diff --no-ext-diff --word-diff'
@@ -20,5 +21,5 @@ alias gl='git log --pretty=format:"%Cgreen%h %Creset %s %Cblueby %an (%ar) %G? %
 #alias gl='git log --oneline --decorate'
 
 function clean_remote_branches() {
-    git checkout master && git remote update --prune | git branch -r --merged | grep -v master | sed -e 's/origin\//:/'
+    git checkout master && git remote update --prune | git branch -r --merged | grep -v master | sed -e 's/origin\//:/' | xargs git push origin
 }

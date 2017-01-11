@@ -13,3 +13,4 @@ docker-env-unset() {
 alias docker-cleanup-images='docker images -q --filter "dangling=true" | xargs -P8 docker rmi'
 alias docker-cleanup-containers='docker rm $(docker ps -a -q)'
 alias dl="docker ps -l -q"
+alias dfimage="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm centurylink/dockerfile-from-image"

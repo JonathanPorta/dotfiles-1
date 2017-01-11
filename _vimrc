@@ -63,9 +63,13 @@ call vundle#begin()
 " required!
 Plugin 'gmarik/Vundle.vim'
 
+" add hashicorp support
+Plugin 'hashivim/vim-hashicorp-tools'
+Plugin 'fatih/vim-hclfmt'
+
 " My Bundles here:
 Plugin 'Chiel92/vim-autoformat'
-" Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 Plugin 'oplatek/Conque-Shell'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'

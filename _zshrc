@@ -49,7 +49,7 @@ unsetopt share_history
 
 antigen apply
 
-export PATH=$PATH:/usr/local/sbin
+export PATH=~/bin:$PATH:/usr/local/sbin
 
 # path to completions
 fpath=(/usr/local/share/zsh/site-functions $fpath)
@@ -62,3 +62,5 @@ fpath=(/usr/local/share/zsh/site-functions $fpath)
 set -o vi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
