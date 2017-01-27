@@ -38,3 +38,4 @@ if [ -f /usr/local/bin/brew ] ; then
 fi
 
 alias s="sudo"
+restart_gpg_agent='gpgconf --kill gpg-agent; killall -9 gpg-agent ; gpgconf --launch gpg-agent'

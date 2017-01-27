@@ -20,6 +20,6 @@ alias gdv='git diff'
 alias gl='git log --pretty=format:"%Cgreen%h %Creset %s %Cblueby %an (%ar) %G? %Cred %d" --graph'
 #alias gl='git log --oneline --decorate'
 
-function clean_remote_branches() {
+clean_remote_branches() {
     git checkout master && git remote update --prune | git branch -r --merged | grep -v master | sed -e 's/origin\//:/' | xargs git push origin
 }
