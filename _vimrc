@@ -439,15 +439,12 @@ set autoread
 au FocusGained,BufEnter * :silent! !
 
 " NERDTree settings
-"nmap <C-n> :NERDTreeToggle<CR>
-nmap <F1> :NERDTreeToggle<CR>
-nmap <C-n> :NERDTreeTabsToggle<CR>
+"nmap <F1> :NERDTreeToggle<CR>
+nmap <F1> :NERDTreeTabsToggle<CR>
 let g:NERDTreeShowHidden=1
-let g:NERDTreeWinSize= 22 " smaller than default 31
 
 " vim-nerdtree-tabs configuration - https://github.com/jistr/vim-nerdtree-tabs#configuration
 let g:nerdtree_tabs_open_on_console_startup = 2
-let g:nerdtree_tabs_focus_on_files = 1
 let g:nerdtree_tabs_focus_on_files = 1
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree

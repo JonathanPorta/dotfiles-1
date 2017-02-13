@@ -61,6 +61,6 @@ fpath=(/usr/local/share/zsh/site-functions $fpath)
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 set -o vi
 
+
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
