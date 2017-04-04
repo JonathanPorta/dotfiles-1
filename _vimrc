@@ -108,15 +108,21 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'            " this must come after godlygeek/tabular
+Plugin 'gabrielelana/vim-markdown'
 Plugin 'mkitt/tabline.vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'polm/github-tasks.vim'
 Plugin 'jez/vim-github-hub'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'junegunn/vim-emoji'
 Plugin 'rakr/vim-one'                       " another clone of atom's One theme
+Plugin 'liuchengxu/space-vim-dark'
 Plugin 'tpope/vim-endwise'
+"Plugin 'xolox/vim-session'
+"Plugin 'xolox/vim-misc'
+Plugin 'sjl/vitality.vim'                   " nice tweaks for making iterm2 + vim + tmux play together, including cursor shape toggling
+Plugin 'b4b4r07/vim-hcl'
+Plugin 'fatih/vim-hclfmt'                   " install hclfmt: go get github.com/fatih/hclfmt
+Plugin 'mhinz/vim-startify'
 
 call vundle#end()            " required
 
@@ -277,6 +283,7 @@ set background=dark
 "colorscheme solarized
 "colorscheme bubblegum
 colorscheme one  " rakr/vim-one
+"colorscheme space-vim-dark
 
 nmap <silent> <F2> <Plug>DashSearch
 nmap <silent> <F3> <Plug>DashSearch
@@ -288,9 +295,9 @@ set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 noremap <F3> :Autoformat<CR><CR>
 
 setlocal spell spelllang=en_us
-set nospell                      " disable spelling in general, enable only for specific file types because it gets really annoying in source code
-autocmd FileType markdown set spell
-autocmd FileType text set spell
+"set nospell                      " disable spelling in general, enable only for specific file types because it gets really annoying in source code
+"autocmd FileType markdown set spell
+"autocmd FileType text set spell
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 
@@ -330,12 +337,27 @@ nmap <silent> <leader>q :call ToggleList("Quickfix List", 'c')<CR>
 " ---------------- end list toggle code ----------------------
 
 " set a vertical marker at the 80th and 120th columns on text files
-autocmd FileType markdown let &colorcolumn="80,".join(range(120,999),",")
-autocmd FileType text let &colorcolumn="80,".join(range(120,999),",")
+fun! EnableColorColumn()
+    if exists('b:ShowColorColumn')
+        let &colorcolumn="80,".join(range(120,999),",")
+    else
+        let &colorcolumn=''
+    endif
+endfun
+autocmd FileType markdown,text let b:ShowColorColumn = 1
+autocmd FileType * call EnableColorColumn()
 
-nmap <Leader><Leader> V              " fast visual mode with <space><space>
+" disable auto-pairs plugin for [] on markdown, it drives me crazy with the auto-spacing
+"au Filetype markdown let b:AutoPairs = {'(':')', '{':'}',"'":"'",'"':'"', '`':'`'}
+let g:AutoPairsMapSpace=0
 
-" map space-{n} to quickly change tabs
+" map tab to scroll thru splits
+nnoremap <Tab> <c-w>w
+
+" SPC SPC - visual mode
+nmap <Leader><Leader> V
+
+" SPC [1-9] - switch to tab 1 through 9
 noremap <silent> <leader>1 1gt
 noremap <silent> <leader>2 2gt
 noremap <silent> <leader>3 3gt
@@ -346,19 +368,23 @@ noremap <silent> <leader>7 7gt
 noremap <silent> <leader>8 8gt
 noremap <silent> <leader>9 9gt
 
-" map tab to scroll thru splits
-nnoremap <Tab> <c-w>w
-
-"hi VertSplit ctermbg=bg ctermfg=bg   " make vert split bar less prominent (NOTE: disabled because this makes resizing with the mouse difficult since the bar is invisible)
-
-" fast save with SPC-w
+" SPC w - fast save
 nnoremap <Leader>w :w<CR>
-" fast opening cltrp with SPC-o
-nnoremap <Leader>o :CtrlP<CR>
+" SPC q a - quit-all
+nnoremap <Leader>qa :qa<CR>
+" SPC q - quit
+nnoremap <Leader>q :q<CR>
 
-" jump loclist
+" SPC f r - Reload .vimrc (from space-vim: https://github.com/liuchengxu/space-vim/blob/master/layers/%2Bvim/better-defaults/README.md#others
+nnoremap <Leader>fR :source $MYVIMRC<CR>
+
+" jump loclist SPC n, SPC p
 map <Leader>n :lnext<CR>
 map <Leader>p :lprev<CR>
+
+" ALT tab - switch tabs
+map    <M-Tab>  :tabprev<CR>
+imap   <M-Tab>  <C-O>:tabprev<CR>
 
 " linters to install:
 "  - shellcheck (brew install shellcheck)
@@ -412,16 +438,20 @@ let g:gist_post_private = 1         " private gists by default
 let g:gist_show_privates = 1        " show private gists with :Gist -l
 
 " ctrlp config
-let g:ctrlp_open_new_file = 'v'   " open new files in a vertical split
+let g:ctrlp_dont_split = 'nerdtree|NERD' " don't open files in the nerdtree pane. this can be a regex
+" open files from ctrlp in a new tab by default (https://github.com/kien/ctrlp.vim/issues/160)
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+" fast opening cltrp with SPC-o
+nnoremap <Leader>o :CtrlP<CR>
 
 " tabline config
 "hi TabLineSel   ctermfg=236    ctermbg=150  cterm=NONE   " roughly matches the bubblegum dark theme
 hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
-
-" plasticboy/vim-markdown config
-let g:vim_markdown_folding_disabled = 1
 
 " gitgutter config
 if emoji#available()
@@ -465,4 +495,28 @@ autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
 set t_8b=[48;2;%lu;%lu;%lum  " Ditto
 
-set spell
+" lower timeouts for moving between modes
+set timeoutlen=1000 ttimeoutlen=0
+
+" gabrielelana/vim-markdown settings
+" - leader + t will toggle a checkbox on a list item, see: https://github.com/gabrielelana/vim-markdown#default-mappings-normal-and-visual-mode
+let g:markdown_mapping_switch_status = '<Leader>t'
+
+" YouCompleteMe (ycm) configuration
+" - Use relative path to python bin so that virtualenv python will be found and autocompletion for libs in the virtualenv will work - https://github.com/Valloric/YouCompleteMe#python-semantic-completion
+let g:ycm_python_binary_path = 'python'
+
+" Startify configuration
+let g:startify_session_dir = '~/.vim/sessions'
+let g:startify_bookmarks = [ '~/.dotfiles', '~/.vimrc', '~/.zshrc' ]
+let g:startify_session_before_save = [ 'echo "Cleaning up before saving.."', 'silent! NERDTreeTabsClose', ]
+let g:startify_session_persistence = 1
+let g:startify_session_autoload = 1
+let g:startify_files_number = 6
+" make startify + nerdtree start together when vim is started with no args
+autocmd VimEnter *
+            \   if !argc()
+            \ |   Startify
+            \ |   NERDTree
+            \ |   wincmd w
+            \ | endif
