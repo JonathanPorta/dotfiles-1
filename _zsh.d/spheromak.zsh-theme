@@ -4,6 +4,7 @@
 # load some modules
 autoload -U zsh/terminfo # Used in the colour alias below
 setopt prompt_subst
+setopt promptsubst
 
 # make some aliases for the colours: (could use normal escape sequences too)
 for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
@@ -68,7 +69,9 @@ function kube_info() {
   echo "$COLOR$PREFIX$cluster_shortname$namespace$SUFFIX%{${reset_color}%} "
 }
 
-PROMPT="╭─${user_host} $(kube_info) ${git_branch} ${current_dir} 
+local kube='$(kube_info)'
+
+PROMPT="╭─${user_host} ${kube} ${git_branch} ${current_dir}
 ╰─$PR_PROMPT "
 RPS1="${return_code}"
 
