@@ -66,7 +66,7 @@ function kube_info() {
   if [[ ! -z "$namespace" ]]; then
     namespace="/$namespace"
   fi
-  echo "$COLOR$PREFIX$cluster_shortname$namespace$SUFFIX%{${reset_color}%} "
+  echo "$COLOR$PREFIX$PR_CYAN$cluster_shortname$PR_RED$namespace$COLOR$SUFFIX%{${reset_color}%} "
 }
 
 local kube='$(kube_info)'
