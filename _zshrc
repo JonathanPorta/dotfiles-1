@@ -112,3 +112,4 @@ set -o vi
 if [ $commands[kubectl] ]; then
   source <(kubectl completion zsh)
 fi
+unsetopt share_history
