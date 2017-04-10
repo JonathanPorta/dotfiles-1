@@ -65,7 +65,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " add hashicorp support
 Plugin 'hashivim/vim-hashicorp-tools'
-Plugin 'fatih/vim-hclfmt'
+Plugin 'fatih/vim-hclfmt'                   " install hclfmt: go get github.com/fatih/hclfmt
 
 " My Bundles here:
 Plugin 'Chiel92/vim-autoformat'
@@ -121,7 +121,6 @@ Plugin 'tpope/vim-endwise'
 "Plugin 'xolox/vim-misc'
 Plugin 'sjl/vitality.vim'                   " nice tweaks for making iterm2 + vim + tmux play together, including cursor shape toggling
 Plugin 'b4b4r07/vim-hcl'
-Plugin 'fatih/vim-hclfmt'                   " install hclfmt: go get github.com/fatih/hclfmt
 Plugin 'mhinz/vim-startify'
 
 call vundle#end()            " required
