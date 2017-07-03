@@ -8,7 +8,7 @@ Usage
 ### Install
 clones this repo ~/.dotfiles and sets up symlinks.
 
-    curl -L https://raw.github.com/spheromak/dotfiles/master/install | bash
+    curl -L https://raw.github.com/jonathanporta/dotfiles-1/master/install | bash
 
 ### Update
 Pulls down any changes from github then sets up symlinks.
